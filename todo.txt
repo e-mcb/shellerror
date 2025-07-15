@@ -33,3 +33,15 @@ expand qui pete minishell>"$USER; zebi $USER"
 
 
 norme
+
+
+
+________________________________________________________
+
+erreur de redirs 
+
+executer certains builtins en process enfant (echo, env, pwd, export sans argument)
+
+rajouter la gestion de memoire associee a ca (tout free)
+
+attention a export

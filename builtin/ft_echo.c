@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:31:46 by sradosav          #+#    #+#             */
-/*   Updated: 2025/07/16 00:06:36 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/16 00:25:29 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ int	is_n_flag(char *s)
 static int	ft_putstr_fd_echo(char *s, int fd)
 {
 	int	i;
+	(void) fd;
 
 	if (!s)
 		return (1);
 	i = 0;
 	while (s[i])
 	{
-		if (write(fd, &s[i], 1) == -1)
+		if (write(1, &s[i], 1) == -1)
 		{
 			perror("echo");
 			return (1);

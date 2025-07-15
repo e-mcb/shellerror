@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:32:04 by sradosav          #+#    #+#             */
-/*   Updated: 2025/07/15 23:18:35 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/16 01:00:35 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,30 @@ void	ft_write_export(char *str, int fd_out)
 	write(fd_out, "\n", 1);
 }
 
-void	ft_print_export(t_shell *shell, int fd_out)
+// void	ft_print_export(t_shell *shell, int fd_out)
+// {
+// 	t_envvar	*env_copy;
+// 	t_envvar	*iter;
+
+// 	env_copy = copy_env_list(shell->env, shell);
+// 	ft_sort_env_list(env_copy);
+// 	iter = env_copy;
+// 	while (iter)
+// 	{
+// 		if (iter->exported == 1)
+// 			ft_write_export(iter->var, fd_out);
+// 		iter = iter->next;
+// 	}
+// 	free_env_list(&env_copy);
+// }
+
+void	ft_print_export(t_shell *shell, int fd_out, int exec_size)
 {
 	t_envvar	*env_copy;
 	t_envvar	*iter;
 
+	if (exec_size > 1)
+		fd_out = 1;
 	env_copy = copy_env_list(shell->env, shell);
 	ft_sort_env_list(env_copy);
 	iter = env_copy;
@@ -100,7 +119,13 @@ int	ft_export(char **str, t_shell *shell, int exec_size, int fd_out)
 {
 	if (!str[1])
 	{
-		ft_print_export(shell, fd_out);
+		ft_print_export(shell, fd_out, exec_size);
+		free_list(&shell->token);
+		free_exec_list(&(shell->exec));
+		free(shell->exec);
+		ft_free_str_array(shell->env_arr);
+		free_env_list(&(shell->env));
+		free (shell);
 		return (0);
 	}
 	else if (exec_size == 1)
