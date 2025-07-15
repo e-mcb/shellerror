@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 20:32:53 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/03 18:48:13 by sradosav         ###   ########.fr       */
+/*   Updated: 2025/07/15 21:46:58 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	amb_redir(char *str, t_shell *shell)
 	if (!msg)
 		ft_clean_exit(msg, shell, NULL, NULL);
 	ft_putstr_fd(msg, 2);
+	write(2, "\n", 1);
 	free(msg);
 }
 
@@ -79,7 +80,7 @@ int	process_token(t_shell *shell, t_token **tmp, t_token **prev,
 		{
 			amb_redir(*expanded, shell);
 			(*tmp)->amb_redir = true;
-			return (free(*expanded), ft_free_str_array(splitted), 1);
+			return (free(*expanded), ft_free_str_array(splitted), 0);
 		}
 		*tmp = insert_new_nodes(shell, *prev, *tmp, splitted);
 		*prev = *tmp;

@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:51:01 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/15 20:53:39 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/15 23:26:31 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	execute_command(t_shell *shell, t_exec *tmp)
 	if (ft_strcmp(tmp->arr[0], "minishell") == 0
 		|| ft_strcmp(tmp->arr[0], "./minishell") == 0)
 		path = (ft_strdup("/tmp/minishell"));
-	else if (tmp->arr[0][0] == '/' || '.')
+	else if (ft_strchr(tmp->arr[0], '/'))
 		path = tmp->arr[0];
 	else
 		path = pathfinder(shell, tmp);

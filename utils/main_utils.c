@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 19:46:47 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/15 19:46:49 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/15 21:19:46 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	env_min(t_shell *shell)
 		perror("cwd init");
 		ft_clean_exit(0, shell, 0, 0);
 	}
-	add_env_var(&(shell->env), PATH, 1, shell);
+	add_env_var(&(shell->env), PATH, 0, shell);
 	add_env_var(&(shell->env), "OLDPWD", 1, shell);
 	add_env_var(&(shell->env), "SHLVL=0", 1, shell);
 }

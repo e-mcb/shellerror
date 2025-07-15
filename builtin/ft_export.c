@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:32:04 by sradosav          #+#    #+#             */
-/*   Updated: 2025/07/06 19:00:26 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/15 23:18:35 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,23 +90,20 @@ int	ft_export_vars(char **str, t_shell *shell)
 			return (1);
 		}
 		else
-		{
 			handle_valid_export(str[i], shell);
-			return (0);
-		}
 		i++;
 	}
 	return (0);
 }
 
-int	ft_export(char **str, t_shell *shell, int in_pipeline, int fd_out)
+int	ft_export(char **str, t_shell *shell, int exec_size, int fd_out)
 {
 	if (!str[1])
 	{
 		ft_print_export(shell, fd_out);
 		return (0);
 	}
-	else if (in_pipeline == 1)
+	else if (exec_size == 1)
 		return (ft_export_vars(str, shell));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:31:46 by sradosav          #+#    #+#             */
-/*   Updated: 2025/07/15 20:44:16 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/15 23:45:20 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static int	ft_putstr_fd_echo(char *s, int fd)
 	i = 0;
 	while (s[i])
 	{
+		printf("fd: %d\n", fd);
 		if (write(fd, &s[i], 1) == -1)
 		{
 			perror("echo");

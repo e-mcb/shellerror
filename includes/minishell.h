@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 13:31:47 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/15 19:54:10 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/15 23:16:57 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@
 # define MAX_HEREDOC 16
 # define OPEN_QUOTES "Minishell does not support open quotes,\
 						please escape them properly\n"
-# define DOUBLE_DOLLARS "Minishell ne gere pas $$\n"
+# define DOUBLE_DOLLARS "Minishell does not support $$\n"
 # define AMB_REDIR "Ambiguous redirect: "
 # define PIPE_FIRST_LAST "syntax error near '|'\n"
 # define NOCLOBBER "noclobber not accounted for in minishell\n\
-						syntax error near token pair '>|'"
+						syntax error near token pair '>|'\n"
 # define OPERATOR_EXTREMITY "Operator detected at the end of input\n"
 # define SUCCESSIVE_OPERATORS "Successive operators detected \n"
-# define PATH "PATH=/home/mzutter/bin:/home/mzutter/bin:/usr/local/sbin:\
-	/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:\
-	/usr/local/games:/snap/bin:/home/mzutter/.dotnet/tools"
+# define PATH "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:\
+/sbin:/bin"
 # define EOF_HEREDOC "minishell: warning:\
 	 here-document delimited by end-of-file (wanted '"
+# define SUCCESSIVE_PIPES "Minishell does not support successive pipes\n"
 
 extern int	g_signal;
 
@@ -191,7 +191,7 @@ t_token		*new_token_append(t_token *head, char *str,
 				t_token_type type, t_shell *shell);
 
 //builtins
-int			ft_export(char **str, t_shell *shell, int in_pipeline, int fd_out);
+int			ft_export(char **str, t_shell *shell, int exec_size, int fd_out);
 int			ft_cd(char **str, t_shell *shell);
 int			ft_echo(char **str, t_shell *shell, int fd_out);
 int			ft_env(char **str, t_shell *shell, int fd_out);
