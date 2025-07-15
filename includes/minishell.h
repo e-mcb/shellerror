@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 13:31:47 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/15 23:16:57 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/16 00:08:23 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define PATH "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:\
 /sbin:/bin"
 # define EOF_HEREDOC "minishell: warning:\
-	 here-document delimited by end-of-file (wanted '"
+here-document delimited by end-of-file (wanted '"
 # define SUCCESSIVE_PIPES "Minishell does not support successive pipes\n"
 
 extern int	g_signal;
@@ -246,7 +246,7 @@ pid_t		execute_all_commands(t_shell *shell, t_exec *tmp, int *pipe_fd,
 				int prev_fd_in);
 
 void		wait_for_children_to_exit(t_shell *shell, pid_t last_pid);
-void		wait_for_heredoc_to_exit(pid_t pid);
+void		wait_for_heredoc_to_exit(pid_t pid, t_shell *shell);
 int			is_str_digit(char *str);
 void		sigint_handler(int sig);
 void		ft_end_minishell(char *input, t_shell *shell,

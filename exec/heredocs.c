@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredocs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 22:45:52 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/03 19:48:41 by sradosav         ###   ########.fr       */
+/*   Updated: 2025/07/16 00:05:11 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*do_heredoc(const t_token *token, t_shell *shell)
 	else
 	{
 		result = read_heredoc_output(pipefd);
-		wait_for_heredoc_to_exit(pid);
+		wait_for_heredoc_to_exit(pid, shell);
 		signal(SIGINT, sigint_handler);
 	}
 	return (result);

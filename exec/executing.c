@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 22:56:11 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/06 20:49:04 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/16 00:05:54 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	wait_for_children_to_exit(t_shell *shell, pid_t last_pid)
 	}
 }
 
-void	wait_for_heredoc_to_exit(pid_t pid)
+void	wait_for_heredoc_to_exit(pid_t pid, t_shell *shell)
 {
 	int		status;
 	int		sig;
@@ -61,6 +61,7 @@ void	wait_for_heredoc_to_exit(pid_t pid)
 		if (sig == SIGINT)
 		{
 			write(1, "\n", 1);
+			shell->exit_status = 128 + sig;
 			g_signal = SIGINT;
 		}
 	}
