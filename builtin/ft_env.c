@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:31:52 by sradosav          #+#    #+#             */
-/*   Updated: 2025/07/06 20:48:17 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/17 19:19:08 by sradosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_env(char **str, t_shell *shell, int fd_out)
+int	ft_env(char **str, t_shell *shell, int exec_size, int fd_out)
 {
 	t_envvar	*env_copy;
 
+	if (exec_size > 1)
+		fd_out = 1;
 	if (count_strings(str) > 1)
 	{
 		ft_putstr_fd("minishell: env: too many arguments or options\n", 2);

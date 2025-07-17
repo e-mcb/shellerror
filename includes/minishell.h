@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 13:31:47 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/16 00:08:23 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/17 19:43:51 by sradosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,11 +193,11 @@ t_token		*new_token_append(t_token *head, char *str,
 //builtins
 int			ft_export(char **str, t_shell *shell, int exec_size, int fd_out);
 int			ft_cd(char **str, t_shell *shell);
-int			ft_echo(char **str, t_shell *shell, int fd_out);
-int			ft_env(char **str, t_shell *shell, int fd_out);
-int			ft_exit(char **arr, t_shell *shell);
-int			ft_pwd(int fd_out);
-int			ft_unset(char **str, t_shell *shell, int in_pipeline);
+int			ft_echo(char **str, t_shell *shell, int exec_size, int fd_out);
+int			ft_env(char **str, t_shell *shell, int exec_size, int fd_out);
+int			ft_exit(char **arr, t_shell *shell, int exec_size);
+int			ft_pwd(int fd_out, int exec_size);
+int			ft_unset(char **str, t_shell *shell, int exec_size);
 
 //clean exit
 void		ft_free_str_array(char **arr);
@@ -205,6 +205,7 @@ void		free_list(t_token **head);
 void		ft_clean_exit(char *input, t_shell *shell,
 				char *str_to_free, char **arr_to_free);
 void		free_exec_list(t_exec **exec);
+void		ft_clean_without_exit(t_shell *shell);
 
 //debug utils
 void		ft_print_arr(char **arr);

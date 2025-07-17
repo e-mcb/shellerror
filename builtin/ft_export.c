@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:32:04 by sradosav          #+#    #+#             */
-/*   Updated: 2025/07/16 01:00:35 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/17 17:59:49 by sradosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,9 @@ int	ft_export_vars(char **str, t_shell *shell)
 	{
 		if (!is_valid_identifier(str[i]))
 		{
-			printf("minishell: export: `%s': not a valid identifier\n", str[i]);
+			ft_putstr_fd("minishell: export: ", 2);
+			ft_putstr_fd(str[i], 2);
+			ft_putstr_fd(": not a valid identifier\n", 2);
 			return (1);
 		}
 		else
@@ -120,13 +122,14 @@ int	ft_export(char **str, t_shell *shell, int exec_size, int fd_out)
 	if (!str[1])
 	{
 		ft_print_export(shell, fd_out, exec_size);
-		free_list(&shell->token);
-		free_exec_list(&(shell->exec));
-		free(shell->exec);
-		ft_free_str_array(shell->env_arr);
-		free_env_list(&(shell->env));
-		free (shell);
 		return (0);
+	}
+	else if (exec_size > 1 && !is_valid_identifier(str[1]))
+	{
+		ft_putstr_fd("minishell: export: ", 2);
+		ft_putstr_fd(str[1], 2);
+		ft_putstr_fd(": not a valid identifier\n", 2);
+		return (1);
 	}
 	else if (exec_size == 1)
 		return (ft_export_vars(str, shell));

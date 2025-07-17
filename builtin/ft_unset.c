@@ -38,12 +38,12 @@ void	delete_node(char *var_name, t_envvar **head)
 	}
 }
 
-int	ft_unset(char **str, t_shell *shell, int in_pipeline)
+int	ft_unset(char **str, t_shell *shell, int exec_size)
 {
 	int	i;
 
 	i = 1;
-	if (in_pipeline <= 1)
+	if (exec_size <= 1)
 	{
 		while (str[i])
 		{

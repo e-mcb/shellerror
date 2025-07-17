@@ -12,10 +12,12 @@
 
 #include "../includes/minishell.h"
 
-int	ft_pwd(int fd_out)
+int	ft_pwd(int fd_out, int exec_size)
 {
 	char	cwd[1024];
 
+	if (exec_size > 1)
+		fd_out = 1;
 	if (getcwd(cwd, sizeof(cwd)) != NULL)
 	{
 		ft_putstr_fd(cwd, fd_out);

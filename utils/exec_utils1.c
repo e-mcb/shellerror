@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:51:01 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/15 23:26:31 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/17 17:55:46 by sradosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	handle_child_process(t_shell *shell, t_exec *tmp, int *pipe_fd)
 	if (ft_is_builtin(tmp->arr[0]))
 	{
 		status = call_builtin(shell, tmp, tmp->arr[0]);
+		if (ft_execsize(shell->exec) > 1)
+			ft_clean_without_exit(shell);
 		exit(status);
 	}
 	else

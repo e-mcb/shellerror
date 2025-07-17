@@ -45,3 +45,27 @@ executer certains builtins en process enfant (echo, env, pwd, export sans argume
 rajouter la gestion de memoire associee a ca (tout free)
 
 attention a export
+
+_____________________________________________________________________
+BUG: 
+
+minishell>sleep 2 | echo yo yo yo >test.txt | sleep 1
+minishell>cat test.txt
+yoyoyominishell>
+minishell>echo yo yo yo 
+yo yo yo
+minishell>
+
+
+minishell>echo test
+test
+minishell>echo test >test.txt
+testminishell>cat test.txt
+
+minishell>
+
+minishell>sleep 2 | env oij oi | sleep 2
+minishell: env: too many arguments or options
+minishell>
+------> c est good ? 
+____________________________________________________________________

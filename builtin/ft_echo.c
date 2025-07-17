@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:31:46 by sradosav          #+#    #+#             */
-/*   Updated: 2025/07/16 00:25:29 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/17 19:09:19 by sradosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,18 @@ int	is_n_flag(char *s)
 	return (1);
 }
 
-static int	ft_putstr_fd_echo(char *s, int fd)
+static int	ft_putstr_fd_echo(char *s, int exec_size, int fd_out)
 {
 	int	i;
-	(void) fd;
 
 	if (!s)
 		return (1);
+	if (exec_size > 1)
+		fd_out = 1;
 	i = 0;
 	while (s[i])
 	{
-		if (write(1, &s[i], 1) == -1)
+		if (write(fd_out, &s[i], 1) == -1)
 		{
 			perror("echo");
 			return (1);
@@ -51,7 +52,7 @@ static int	ft_putstr_fd_echo(char *s, int fd)
 	return (0);
 }
 
-int	ft_echo(char **str, t_shell *shell, int fd_out)
+int	ft_echo(char **str, t_shell *shell, int exec_size, int fd_out)
 {
 	int	i;
 	int	newline;
@@ -63,9 +64,11 @@ int	ft_echo(char **str, t_shell *shell, int fd_out)
 		newline = 0;
 		i++;
 	}
+	if (exec_size > 1)
+		fd_out = 1;
 	while (str[i])
 	{
-		if (ft_putstr_fd_echo(str[i], fd_out) == 1)
+		if (ft_putstr_fd_echo(str[i], exec_size, fd_out) == 1)
 			return (1);
 		if (str[i + 1] && ft_strlen(str[i]) != ' ')
 			ft_putstr_fd(" ", fd_out);
