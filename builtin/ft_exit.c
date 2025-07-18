@@ -12,35 +12,6 @@
 
 #include "../includes/minishell.h"
 
-long long	is_out_of_range(const char *nptr)
-{
-	long long			i;
-	unsigned long long	r;
-	long long			s;
-
-	i = 0;
-	r = 0;
-	s = 1;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
-		i++;
-	if (nptr[i] == 45)
-	{
-		s = -1;
-		i++;
-	}
-	else if (nptr[i] == 43)
-		i++;
-	while (nptr[i] >= 48 && nptr[i] <= 57)
-	{
-		r = (r * 10) + (nptr[i] - 48);
-		if ((r > 9223372036854775808ULL && s == -1)
-			|| (r > 9223372036854775807ULL && s == 1))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int	ft_exit_argcheck(int c)
 {
 	if ((c >= '0') && (c <= '9'))
@@ -84,6 +55,17 @@ void	free_before_exit(t_shell *shell, void *ptr_a, void *ptr_b)
 	}
 }
 
+static void	handle_exit_error(char *arg, t_shell *shell, int exec_size)
+{
+	if (exec_size == 1)
+		ft_putstr_fd("exit\n", 2);
+	ft_putstr_fd("exit: ", 2);
+	ft_putstr_fd(arg, 2);
+	ft_putstr_fd(": numeric argument required\n", 2);
+	free_before_exit(shell, NULL, NULL);
+	exit(2);
+}
+
 int	ft_exit(char **arr, t_shell *shell, int exec_size)
 {
 	long long	exit_status;
@@ -95,22 +77,15 @@ int	ft_exit(char **arr, t_shell *shell, int exec_size)
 			ft_putstr_fd("exit\n", 1);
 		exit(0);
 	}
-	else if (arr[1] && arr[2])
+	if (arr[2])
 		return (ft_putstr_fd("exit: too many arguments\n", 2), 1);
-	else if (!ft_is_number(arr[1]) || is_out_of_range(arr[1]))
-	{
-		if (exec_size == 1)
-			ft_putstr_fd("exit\n", 2);
-		ft_putstr_fd("exit: numeric argument required\n", 2);
-		free_before_exit(shell, NULL, NULL);
-		exit(2);
-	}
-	else
-	{
-		exit_status = ft_atoll(arr[1]) % 256;
-		free_before_exit(shell, NULL, NULL);
-		if (exec_size == 1)
-			ft_putstr_fd("exit\n", 2);
-		exit(exit_status);
-	}
+	if (!ft_is_number(arr[1]) || is_out_of_range(arr[1]))
+		handle_exit_error(arr[1], shell, exec_size);
+	exit_status = ft_atoll(arr[1]) % 256;
+	if (exit_status < 0)
+		exit_status += 256;
+	free_before_exit(shell, NULL, NULL);
+	if (exec_size == 1)
+		ft_putstr_fd("exit\n", 2);
+	exit(exit_status);
 }

@@ -26,6 +26,7 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <stdbool.h>
+# include <limits.h>
 # include "libft/libft.h"
 
 # define MAX_FD 1023
@@ -198,6 +199,7 @@ int			ft_env(char **str, t_shell *shell, int exec_size, int fd_out);
 int			ft_exit(char **arr, t_shell *shell, int exec_size);
 int			ft_pwd(int fd_out, int exec_size);
 int			ft_unset(char **str, t_shell *shell, int exec_size);
+int			is_out_of_range(const char *nptr);
 
 //clean exit
 void		ft_free_str_array(char **arr);

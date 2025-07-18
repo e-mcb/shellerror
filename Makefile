@@ -24,12 +24,14 @@ SRCS = main.c \
 	$(UTILS_DIR)/split_with_sep.c \
 	$(UTILS_DIR)/env_utils.c \
 	$(UTILS_DIR)/env_utils2.c \
+	$(UTILS_DIR)/env_utils3.c \
 	$(UTILS_DIR)/exec_utils1.c \
 	$(UTILS_DIR)/exec_utils2.c \
 	$(UTILS_DIR)/string_utils3.c \
 	$(UTILS_DIR)/main_utils.c \
 	$(UTILS_DIR)/free_utils.c \
 	$(UTILS_DIR)/quotes_utils.c \
+	$(UTILS_DIR)/exit_builtin_utils.c \
 	$(TOKENIZER_DIR)/tokenizer.c \
 	$(TOKENIZER_DIR)/split2.c \
 	$(TOKENIZER_DIR)/refine_token.c \
@@ -40,7 +42,6 @@ SRCS = main.c \
 	$(EXPAND_DIR)/joinexpanded.c \
 	$(EXPAND_DIR)/splitandexpand.c \
 	$(BUILTIN_DIR)/ft_cd.c \
-	$(BUILTIN_DIR)/ft_dup_env.c \
 	$(BUILTIN_DIR)/ft_echo.c \
 	$(BUILTIN_DIR)/ft_env.c \
 	$(BUILTIN_DIR)/ft_exit.c \
