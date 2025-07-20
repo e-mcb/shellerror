@@ -66,15 +66,6 @@ static void	handle_exit_error(char *arg, t_shell *shell, int exec_size)
 	exit(2);
 }
 
-int	fake_exit(char **arr)
-{
-	if (!arr[1])
-		return (0);
-	if (arr[1] && ft_is_number(arr[1]) && !is_out_of_range(arr[1]) && !arr[2])
-		return (ft_atoll(arr[1]) % 256);
-	return (0);
-}
-
 int	ft_exit(char **arr, t_shell *shell, int exec_size)
 {
 	long long	exit_status;

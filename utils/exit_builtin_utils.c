@@ -26,7 +26,8 @@ static int	ft_check_limits(unsigned long long result, int digit, int sign)
 	return (0);
 }
 
-static int	ft_parse_number(const char *nptr, unsigned long long *result, int *sign)
+static int	ft_parse_number(const char *nptr,
+							unsigned long long *result, int *sign)
 {
 	int	i;
 	int	digit;

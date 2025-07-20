@@ -65,35 +65,6 @@ void	handle_in_child(t_shell *shell, t_exec *cmd, int *pipe_fd)
 	handle_child_process(shell, cmd, pipe_fd);
 }
 
-int	check_for_dummy_builtin(t_exec *tmp, t_shell *shell)
-{
-	if (ft_strcmp(tmp->arr[0], "exit") == 0 && ft_execsize(shell->exec) > 1)
-	{
-		dummy_exit(tmp, shell);
-		//ft_clean_without_exit(shell);
-		return (1);
-	}
-	//if (ft_strcmp(tmp->arr[0], "cd") == 0 && ft_execsize(shell->exec) > 1)
-	//{
-	//	dummy_cd(tmp, shell);
-	//	ft_clean_without_exit(shell);
-	//	return (1);
-	//}
-	//if (ft_strcmp(tmp->arr[0], "export") == 0 && ft_execsize(shell->exec) > 1)
-	//{
-	//	dummy_export(tmp, shell);
-	//	ft_clean_without_exit(shell);
-	//	return (1);
-	//}
-	//if (ft_strcmp(tmp->arr[0], "unset") == 0 && ft_execsize(shell->exec) > 1)
-	//{
-	//	dummy_unset(tmp, shell);
-	//	ft_clean_without_exit(shell);
-	//	return (1);
-	//}
-	return (0);
-}
-
 //pid_t	execute_all_commands(t_shell *shell, t_exec *tmp,
 //		int *pipe_fd, int prev_fd_in)
 //{
@@ -125,16 +96,15 @@ int	check_for_dummy_builtin(t_exec *tmp, t_shell *shell)
 //	return (last_pid);
 //}
 
-
-pid_t execute_single_command(t_shell *shell, t_exec *cmd,
-							 int *pipe_fd, int *prev_fd_in)
+pid_t	execute_single_command(t_shell *shell, t_exec *cmd,
+							int *pipe_fd, int *prev_fd_in)
 {
-	pid_t pid;
+	pid_t	pid;
 
 	if (!is_valid_command(cmd))
-		return -2;
+		return (-2);
 	if (check_for_dummy_builtin(cmd, shell))
-		return -1;
+		return (-1);
 	if (cmd->next != NULL)
 		safe_pipe(pipe_fd, shell);
 	signal(SIGINT, SIG_IGN);
@@ -146,13 +116,13 @@ pid_t execute_single_command(t_shell *shell, t_exec *cmd,
 	return (pid);
 }
 
-pid_t execute_all_commands(t_shell *shell, t_exec *tmp,
-                           int *pipe_fd, int prev_fd_in)
+pid_t	execute_all_commands(t_shell *shell, t_exec *tmp,
+							int *pipe_fd, int prev_fd_in)
 {
 	pid_t	pid;
 	pid_t	last_pid;
 
-	last_pid = -1;  
+	last_pid = -1;
 	while (tmp)
 	{
 		pid = execute_single_command(shell, tmp, pipe_fd, &prev_fd_in);

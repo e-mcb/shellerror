@@ -30,7 +30,7 @@ void	wait_for_children_to_exit(t_shell *shell, pid_t last_pid)
 	int		status;
 	pid_t	wpid;
 	int		sig;
-	
+
 	wpid = wait(&status);
 	while (wpid > 0)
 	{
@@ -53,20 +53,22 @@ void	wait_for_remaining_children(void)
 {
 	int		status;
 	pid_t	wpid;
+	int		sig;
 
-	while ((wpid = wait(&status)) > 0)
+	wpid = wait(&status);
+	while (wpid > 0)
 	{
 		if (WIFSIGNALED(status))
 		{
-			int sig = WTERMSIG(status);
+			sig = WTERMSIG(status);
 			if (sig == SIGQUIT)
 				write(1, "Quit\n", 5);
 			else if (sig == SIGINT)
 				write(1, "\n", 1);
 		}
+		wpid = wait(&status);
 	}
 }
-
 
 void	wait_for_heredoc_to_exit(pid_t pid, t_shell *shell)
 {

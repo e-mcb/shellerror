@@ -27,7 +27,6 @@ void	execute_command(t_shell *shell, t_exec *tmp)
 		path = pathfinder(shell, tmp);
 	if (path == NULL)
 	{
-		
 		ft_putstr_fd(tmp->arr[0], 2);
 		ft_putstr_fd(": command not found ", 2);
 		ft_putstr_fd("\n", 2);
