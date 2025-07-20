@@ -258,6 +258,12 @@ void		ft_set_shlvl(t_shell *shell, char *shlvl_str);
 void		env_min(t_shell *shell);
 int			ft_isspace(int c);
 
-int			fake_exit(char **arr);
+int			check_for_dummy_builtin(t_exec *tmp, t_shell *shell);
+void		dummy_exit(t_exec *tmp, t_shell *shell);
+void		dummy_cd(t_exec *tmp, t_shell *shell);
+void		dummy_export(t_exec *tmp, t_shell *shell);
+void		dummy_unset(t_exec *tmp, t_shell *shell);
+int			ft_exit_argcheck(int c);
+int			ft_is_number(const char *str);
 
 #endif

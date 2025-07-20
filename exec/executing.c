@@ -49,6 +49,25 @@ void	wait_for_children_to_exit(t_shell *shell, pid_t last_pid)
 	}
 }
 
+void	wait_for_remaining_children(void)
+{
+	int		status;
+	pid_t	wpid;
+
+	while ((wpid = wait(&status)) > 0)
+	{
+		if (WIFSIGNALED(status))
+		{
+			int sig = WTERMSIG(status);
+			if (sig == SIGQUIT)
+				write(1, "Quit\n", 5);
+			else if (sig == SIGINT)
+				write(1, "\n", 1);
+		}
+	}
+}
+
+
 void	wait_for_heredoc_to_exit(pid_t pid, t_shell *shell)
 {
 	int		status;
@@ -81,6 +100,9 @@ void	exec_loop(t_shell *shell)
 	last_pid = execute_all_commands(shell, tmp, pipe_fd, prev_fd_in);
 	if (prev_fd_in != STDIN_FILENO)
 		close(prev_fd_in);
-	wait_for_children_to_exit(shell, last_pid);
+	if (last_pid < 0)
+		wait_for_remaining_children();
+	else
+		wait_for_children_to_exit(shell, last_pid);
 	signal(SIGINT, sigint_handler);
 }

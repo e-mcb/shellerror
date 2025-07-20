@@ -44,10 +44,8 @@ int	call_builtin(t_shell *shell, t_exec *cur_exec, char *cmd)
 		return (ft_unset(cur_exec->arr, shell, exec_size));
 	if (ft_strcmp(cmd, "env") == 0)
 		return (ft_env(cur_exec->arr, shell, exec_size, cur_exec->fd_out));
-	if (ft_strcmp(cmd, "exit") == 0 && exec_size == 1)
+	if (ft_strcmp(cmd, "exit") == 0)
 		return (ft_exit(cur_exec->arr, shell, exec_size));
-	if (ft_strcmp(cmd, "exit") == 0 && exec_size > 1)
-		return (fake_exit(cur_exec->arr));
 	return (0);
 }
 

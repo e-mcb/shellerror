@@ -48,6 +48,7 @@ SRCS = main.c \
 	$(BUILTIN_DIR)/ft_export.c \
 	$(BUILTIN_DIR)/ft_pwd.c \
 	$(BUILTIN_DIR)/ft_unset.c \
+	$(BUILTIN_DIR)/dummy_builtins.c \
 	$(EXEC_DIR)/exec_to_sort.c \
 	$(EXEC_DIR)/pathfinder.c \
 	$(EXEC_DIR)/prep_exec.c \
