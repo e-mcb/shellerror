@@ -1,2 +1,0 @@
-Exit
-Exit du minishell si c'est la seul commande de la pipeline
