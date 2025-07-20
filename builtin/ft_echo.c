@@ -70,8 +70,7 @@ int	ft_echo(char **str, t_shell *shell, int exec_size, int fd_out)
 	{
 		if (ft_putstr_fd_echo(str[i], exec_size, fd_out) == 1)
 			return (1);
-		if (str[i + 1] && (ft_strlen(str[i]) == 0
-			|| str[i][ft_strlen(str[i]) - 1] != ' '))
+		if (str[i + 1] && (str[i][ft_strlen(str[i]) - 1] != ' '))
 			ft_putstr_fd(" ", fd_out);
 		i++;
 	}
