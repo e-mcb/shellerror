@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:32:04 by sradosav          #+#    #+#             */
-/*   Updated: 2025/07/17 17:59:49 by sradosav         ###   ########.fr       */
+/*   Updated: 2025/07/20 16:02:55 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_print_export(t_shell *shell, int fd_out, int exec_size)
 	iter = env_copy;
 	while (iter)
 	{
-		if (iter->exported == 1)
+		if (iter->exported == 1 && ft_strncmp("_=", iter->var, 2) != 0)
 			ft_write_export(iter->var, fd_out);
 		iter = iter->next;
 	}

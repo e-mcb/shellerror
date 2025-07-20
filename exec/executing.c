@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 22:56:11 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/16 00:34:46 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/20 17:49:12 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	wait_for_children_to_exit(t_shell *shell, pid_t last_pid)
 	int		status;
 	pid_t	wpid;
 	int		sig;
-
+	
 	wpid = wait(&status);
 	while (wpid > 0)
 	{

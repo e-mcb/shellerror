@@ -69,3 +69,25 @@ minishell: env: too many arguments or options
 minishell>
 ------> c est good ? 
 ____________________________________________________________________
+
+
+builtins
+
+il faut verifier la derniere commande
+si c'est un builtin, on l'execute en process parent (on met a jour exec status dedans)
+parcontre on rajoute aux builtins importants un flag si c'est la derniere commande (genre exit se fait en process parent
+mais n'exit pas vraiment, il gere juste la valeur de $?)
+
+signaux (cat | cat | ls) 
+minishell>cat | cat | ls
+builtin  exit.txt  includes	main.c	  minishell  README.md	tokenizer  valgrind.supp
+exec	 expand    input_check	Makefile  objects    todo.txt	utils
+^\Quit
+Quit
+minishell>
+
+minishell>echo $USER_ $zebi_____ $USER
+  mzutter
+
+les espaces a gerer dans echo (ft_echo.c l.73/74)
+

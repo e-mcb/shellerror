@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 13:31:47 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/17 19:43:51 by sradosav         ###   ########.fr       */
+/*   Updated: 2025/07/20 18:25:16 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,5 +257,7 @@ void		ft_end_minishell(char *input, t_shell *shell,
 void		ft_set_shlvl(t_shell *shell, char *shlvl_str);
 void		env_min(t_shell *shell);
 int			ft_isspace(int c);
+
+int			fake_exit(char **arr);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 15:14:08 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/02 18:12:27 by sradosav         ###   ########.fr       */
+/*   Updated: 2025/07/20 14:57:57 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static bool	handle_double_operator(int i, t_shell *shell, t_input_context *ctx)
 	char	*tmp;
 	int		checker;
 
+	checker = 0;
 	if (ctx->str[i + 1] && ((ctx->str[i] == '<' && ctx->str[i + 1] == '<')
 			|| (ctx->str[i] == '>' && ctx->str[i + 1] == '>')))
 	{

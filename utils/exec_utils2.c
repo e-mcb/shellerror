@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:54:14 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/17 19:44:14 by sradosav         ###   ########.fr       */
+/*   Updated: 2025/07/20 18:28:04 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ int	call_builtin(t_shell *shell, t_exec *cur_exec, char *cmd)
 		return (ft_unset(cur_exec->arr, shell, exec_size));
 	if (ft_strcmp(cmd, "env") == 0)
 		return (ft_env(cur_exec->arr, shell, exec_size, cur_exec->fd_out));
-	if (ft_strcmp(cmd, "exit") == 0)
+	if (ft_strcmp(cmd, "exit") == 0 && exec_size == 1)
 		return (ft_exit(cur_exec->arr, shell, exec_size));
+	if (ft_strcmp(cmd, "exit") == 0 && exec_size > 1)
+		return (fake_exit(cur_exec->arr));
 	return (0);
 }
 

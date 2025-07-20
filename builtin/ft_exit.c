@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:31:57 by sradosav          #+#    #+#             */
-/*   Updated: 2025/07/17 19:45:05 by sradosav         ###   ########.fr       */
+/*   Updated: 2025/07/20 18:45:40 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@ static void	handle_exit_error(char *arg, t_shell *shell, int exec_size)
 	exit(2);
 }
 
+int	fake_exit(char **arr)
+{
+	if (!arr[1])
+		return (0);
+	if (arr[1] && ft_is_number(arr[1]) && !is_out_of_range(arr[1]) && !arr[2])
+		return (ft_atoll(arr[1]) % 256);
+	return (0);
+}
+
 int	ft_exit(char **arr, t_shell *shell, int exec_size)
 {
 	long long	exit_status;
@@ -88,4 +97,5 @@ int	ft_exit(char **arr, t_shell *shell, int exec_size)
 	if (exec_size == 1)
 		ft_putstr_fd("exit\n", 2);
 	exit(exit_status);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:31:46 by sradosav          #+#    #+#             */
-/*   Updated: 2025/07/17 19:09:19 by sradosav         ###   ########.fr       */
+/*   Updated: 2025/07/20 19:25:45 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_echo(char **str, t_shell *shell, int exec_size, int fd_out)
 		if (ft_putstr_fd_echo(str[i], exec_size, fd_out) == 1)
 			return (1);
 		if (str[i + 1] && ft_strlen(str[i]) != ' ')
-			ft_putstr_fd(" ", fd_out);
+			ft_putstr_fd(" ", 1);
 		i++;
 	}
 	if (newline)

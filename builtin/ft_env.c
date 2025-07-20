@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:31:52 by sradosav          #+#    #+#             */
-/*   Updated: 2025/07/17 19:19:08 by sradosav         ###   ########.fr       */
+/*   Updated: 2025/07/20 16:04:00 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	ft_env(char **str, t_shell *shell, int exec_size, int fd_out)
 		env_copy = shell->env;
 		while (env_copy)
 		{
-			if (env_copy->exported == 1 && ft_strchr(env_copy->var, '=')
-				&& ft_strncmp(env_copy->var, "_=", 2) != 0)
+			if (env_copy->exported == 1 && ft_strchr(env_copy->var, '='))
 			{
 				ft_putstr_fd(env_copy->var, fd_out);
 				ft_putstr_fd("\n", fd_out);

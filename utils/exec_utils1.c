@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sradosav <sradosav@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:51:01 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/17 17:55:46 by sradosav         ###   ########.fr       */
+/*   Updated: 2025/07/20 19:16:03 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	execute_command(t_shell *shell, t_exec *tmp)
 		path = pathfinder(shell, tmp);
 	if (path == NULL)
 	{
-		ft_putstr_fd("Command not found ", 2);
+		
 		ft_putstr_fd(tmp->arr[0], 2);
+		ft_putstr_fd(": command not found ", 2);
 		ft_putstr_fd("\n", 2);
 		exit(127);
 	}

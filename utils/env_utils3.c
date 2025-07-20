@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dup_env.c                                       :+:      :+:    :+:   */
+/*   env_utils3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:30:55 by sradosav          #+#    #+#             */
-/*   Updated: 2025/06/25 23:02:19 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/20 16:09:25 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_envvar	*ft_env_to_list(char **envp, t_shell *shell)
 	{
 		exported = 1;
 		if (strncmp(envp[i], "_=", 2) == 0)
-			exported = 0;
+			exported = 1;
 		add_env_var(&env, envp[i], exported, shell);
 		i++;
 	}

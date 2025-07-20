@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 11:16:07 by mzutter           #+#    #+#             */
-/*   Updated: 2025/07/06 21:34:10 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/07/20 17:45:46 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static t_shell	*init_shell(t_shell *shell, char **envp)
 		update_or_add("SHLVL", "1", shell, 1);
 	else
 		ft_set_shlvl(shell, shlvl_str);
+	update_or_add("_", "]", shell, 1);
 	return (shell);
 }
 

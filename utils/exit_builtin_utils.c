@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_builtin_utils.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/20 17:02:26 by mzutter           #+#    #+#             */
+/*   Updated: 2025/07/20 17:02:27 by mzutter          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static int	ft_check_limits(unsigned long long result, int digit, int sign)
@@ -50,8 +62,6 @@ int	is_out_of_range(const char *nptr)
 	int					parsed_len;
 
 	parsed_len = ft_parse_number(nptr, &result, &sign);
-	if (parsed_len == 1)
-		return (1);
 	if (nptr[parsed_len] != '\0')
 		return (1);
 	return (0);
